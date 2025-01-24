@@ -5,36 +5,36 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/21 22:49:11 by thofstet          #+#    #+#              #
-#    Updated: 2025/01/24 23:59:18 by thofstet         ###   ########.fr        #
+#    Created: 2024/10/16 23:19:50 by thofstet          #+#    #+#              #
+#    Updated: 2025/01/25 00:05:03 by thofstet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long
-SRC = $(wildcard *.c)
-GNL_SRC = $(wildcard *.c)
-PRINTF_SRC = $(wildcard *.c)
 
-OBJ := $(SRC:%.c=%.o)
-GNL_OBJ := $(GNL_SRC:%.c=%.o)
-PRINTF_OBJ := $(PRINTF_SRC:%.c=%.o)
+NAME = libftprintf.a
+
+SRC =	ft_numlen ft_print_char ft_print_hexa ft_print_int ft_print_string ft_print_unsigned_dec ft_printf ft_putnbr ft_putstr ft_strchr_2 ft_strlen_2 ft_print_pointer
+SRCS =	$(addsuffix .c, $(SRC))
+
+OBJS = ${SRCS:.c=.o}
 
 CC = gcc
-CCFLAGS = -Wextra -Wall -Werror
 
-all:	$(NAME)
+CFLAGS = -Wall -Werror -Wextra
 
-$(NAME): $(OBJ) $(GNL_OBJ) $(PRINTF_OBJ)
-	$(CC) $(CCFLAGS) $^ -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+OBJS = $(SRCS:.c=.o)
 
-%.o: %.c
-	$(CC) $(CCFLAGS) -Imlx -Iincludes -c $< -o $@
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 clean:
-	rm -f $(OBJ) $(GNL_OBJ) $(PRINTF_OBJ)
+	rm -rf $(OBJS)
 
 fclean: clean
-	make clean -C mlx/
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
+
+.SILENT:

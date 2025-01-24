@@ -6,7 +6,7 @@
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:46:40 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:13:38 by thofstet         ###   ########.fr       */
+/*   Updated: 2025/01/25 00:15:05 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,11 @@ int	fill_grid(int fd, t_game *game)
 				x = 0;
 				while (game->grid[y][x])
 				{
-					free(game->grid[x][y]);
+					free(game->grid[y][x]);
 					x++;
 				}
 				y++;
 			}
-			/* creer une fonction pour free une grille */
 			return (-1);
 		}
 		free (line);
@@ -67,7 +66,7 @@ int	fill_grid(int fd, t_game *game)
 	return (1);
 }
 
-int	get_line_length(t_game *game);
+int	get_line_length(t_game *game)
 {
 	int	length;
 

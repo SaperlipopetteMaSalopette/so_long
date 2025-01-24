@@ -6,7 +6,7 @@
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 22:06:43 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:18:13 by thofstet         ###   ########.fr       */
+/*   Updated: 2025/01/24 23:50:34 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	check_flood(t_game *game)
 	fd = 0;
 	coins = coin_count(game->grid);
 	exits = 0;
-	close (fd);
 	fd = (open(file, 0_RDONLY));
 	if (!fill_grid_two(fd, game))
 		return (-1);
 	flood_fill(game, game->px, game->py);
+	close(fd);
 	if (compare_coins(game) != 1 || compare_exit(game) != 1 || check_exit_fill(game) != 1)
 		return (-1)
 	return (1);
@@ -54,8 +54,8 @@ int	fill_grid_two(int fd, t_game *game)
 				x = 0;
 				while (game->grid_two[y][x])
 				{
-					if (game->grid_two[x][y])
-						free(game->grid_two[x][y]);
+					if (game->grid_two[y][x])
+						free(game->grid_two[y][x]);
 					else
 						x++;
 				}

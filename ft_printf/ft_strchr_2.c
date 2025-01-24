@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:42:53 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:44:10 by thofstet         ###   ########.fr       */
+/*   Created: 2024/10/17 01:10:33 by thofstet          #+#    #+#             */
+/*   Updated: 2025/01/25 00:04:47 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_strchr_2(const char *str, int c)
 {
-	t_game	game;
-
-	if (argc != 2)
-		return (0);
-	read_map(argv[1], &game);
-
-	void *mlx = mlx_init();
-
-	ft_printf("Tout bon charo");
-	return 0;
+	while (*str != (char)c)
+	{
+		if (*str == '\0')
+			return (-1);
+		str++;
+	}
+	return (1);
 }

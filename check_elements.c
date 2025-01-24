@@ -6,11 +6,22 @@
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 23:04:48 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:09:32 by thofstet         ###   ########.fr       */
+/*   Updated: 2025/01/25 00:13:00 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	get_line_length2(char *str,  t_game *game)
+{
+	int	length;
+
+	length = 0;
+	length = ft_strlen(str[length]);
+	if (length > 0 && line [size -1] == '\n')
+		length--;
+	return (length);
+}
 
 int	check_map(t_game *game)
 {
@@ -23,9 +34,9 @@ int	check_map(t_game *game)
 		x = 0;
 		while(game->grid[y][x])
 		{
-			if (game->grid[y][x] != '1' && game->grid != '0'
-				 && game->grid != 'C' && game->grid != 'P'
-				&& game->grid != 'E' && game->grid != "\n")
+			if (game->grid[y][x] != '1' && game->grid[y][x] != '0'
+				 && game->grid[y][x] != 'C' && game->grid[y][x] != 'P'
+				&& game->grid[y][x] != 'E' && game->grid[y][x] != '\n')
 				return (-1);
 			else
 				x++;
@@ -177,17 +188,12 @@ int	check_borders(t_game *game)
 {
 	int	x;
 	int	y;
-	int	i;
-	int	j;
 
 	x = 0;
 	y = 0;
-	i = game->heigth - 1;
-	j = game->length - 1;
-
 	while (game->grid[0][x])
 	{
-		if (game->grid[0][x] != '1' || game->grid[game->heigth - 1][x] != '1')
+		if (game->grid[0][x] != '1' || game->grid[game->height - 1][x] != '1')
 			return (-1);
 		x++;
 	}

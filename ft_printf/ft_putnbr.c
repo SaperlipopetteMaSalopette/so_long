@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:42:53 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:44:10 by thofstet         ###   ########.fr       */
+/*   Created: 2024/10/17 01:19:32 by thofstet          #+#    #+#             */
+/*   Updated: 2024/10/25 14:18:59 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putnbr(int n)
 {
-	t_game	game;
+	int	count;
 
-	if (argc != 2)
-		return (0);
-	read_map(argv[1], &game);
-
-	void *mlx = mlx_init();
-
-	ft_printf("Tout bon charo");
-	return 0;
+	count = 0;
+	if (n <= -2147483648)
+	{
+		ft_putstr("-2147483648");
+		return (11);
+	}
+	if (n < 0)
+	{
+		count += ft_print_char('-');
+		n = -n;
+	}
+	if (n / 10)
+	{
+		count += ft_putnbr(n / 10);
+		count += ft_putnbr(n % 10);
+	}
+	else
+		count += ft_print_char('0' + n);
+	return (count);
 }

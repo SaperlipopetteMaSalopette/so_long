@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:42:53 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:44:10 by thofstet         ###   ########.fr       */
+/*   Created: 2024/10/16 22:32:16 by thofstet          #+#    #+#             */
+/*   Updated: 2024/10/25 14:12:49 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_putstr(char *s)
 {
-	t_game	game;
+	unsigned int	i;
 
-	if (argc != 2)
-		return (0);
-	read_map(argv[1], &game);
-
-	void *mlx = mlx_init();
-
-	ft_printf("Tout bon charo");
-	return 0;
+	i = 0;
+	if (!s)
+		return (-1);
+	while (s[i] != '\0')
+	{
+		ft_print_char(s[i]);
+		i++;
+	}
+	return (i);
 }

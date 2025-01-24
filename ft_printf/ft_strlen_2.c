@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:42:53 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:44:10 by thofstet         ###   ########.fr       */
+/*   Created: 2024/10/17 04:36:12 by thofstet          #+#    #+#             */
+/*   Updated: 2025/01/25 00:03:42 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	ft_strlen_2(char *str)
 {
-	t_game	game;
+	ssize_t	i;
 
-	if (argc != 2)
-		return (0);
-	read_map(argv[1], &game);
-
-	void *mlx = mlx_init();
-
-	ft_printf("Tout bon charo");
-	return 0;
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_hexa.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:42:53 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:44:10 by thofstet         ###   ########.fr       */
+/*   Created: 2024/10/17 06:33:42 by thofstet          #+#    #+#             */
+/*   Updated: 2024/10/22 17:33:49 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+static void	ft_putnbr_base(unsigned int nbr, char *base)
 {
-	t_game	game;
+	if (nbr >= 16)
+		ft_putnbr_base(nbr / 16, base);
+	write(1, &base[nbr % 16], 1);
+}
 
-	if (argc != 2)
-		return (0);
-	read_map(argv[1], &game);
+int	ft_print_hexa(unsigned int nbr, char *base)
+{
+	unsigned int	count;
+	unsigned int	tmp;
 
-	void *mlx = mlx_init();
-
-	ft_printf("Tout bon charo");
-	return 0;
+	count = 0;
+	if (nbr == 0)
+		return (write(1, "0", 1));
+	ft_putnbr_base(nbr, base);
+	tmp = nbr;
+	while (tmp > 0)
+	{
+		tmp /= 16;
+		count++;
+	}
+	return (count);
 }
