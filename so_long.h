@@ -6,7 +6,7 @@
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:30:21 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/21 23:05:26 by thofstet         ###   ########.fr       */
+/*   Updated: 2025/01/24 22:12:54 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,13 @@ typedef struct s_game
 	void	*mlx;
 	void	*window;
 	char	**grid;
+	char	**grid_two;
 	int		length;
 	int		height;
+	int		px;
+	int		py;
+	int		coin_fill;
+	int		exit_fill;
 } t_game;
 
 #endif

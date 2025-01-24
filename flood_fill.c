@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:46:40 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 23:13:38 by thofstet         ###   ########.fr       */
+/*   Created: 2025/01/24 22:06:43 by thofstet          #+#    #+#             */
+/*   Updated: 2025/01/24 23:18:13 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	read_map(char *file, t_game *game)
+int	check_flood(t_game *game)
 {
-	int	fd;
+	int fd;
+	int	coins_fill;
+	int	exits_fill;
 
-	fd = open(file, 0_RDONLY);
-	open(fd, 0_RDONLY);
-	if (fd < 0)
-		return (-1);
-	game->height = count_lines(fd);
-	if (game->height <= 2)
-		return (-1);
+	fd = 0;
+	coins = coin_count(game->grid);
+	exits = 0;
 	close (fd);
 	fd = (open(file, 0_RDONLY));
-	if (!fill_grid(fd, game))
+	if (!fill_grid_two(fd, game))
 		return (-1);
+	flood_fill(game, game->px, game->py);
+	if (compare_coins(game) != 1 || compare_exit(game) != 1 || check_exit_fill(game) != 1)
+		return (-1)
+	return (1);
 }
 
-int	fill_grid(int fd, t_game *game)
+int	fill_grid_two(int fd, t_game *game)
 {
 	char	**grid;
 	int		i;
@@ -44,16 +46,18 @@ int	fill_grid(int fd, t_game *game)
 		line = get_next_line(fd);
 		if (!line)
 			return (-1);
-		game->grid[i] = ft_strdup(line);
-		if (!game->grid[i])
+		game->grid_two[i] = ft_strdup(line);
+		if (!game->grid_two[i])
 		{
-			while (game->grid[y])
+			while (game->grid_two[y])
 			{
 				x = 0;
-				while (game->grid[y][x])
+				while (game->grid_two[y][x])
 				{
-					free(game->grid[x][y]);
-					x++;
+					if (game->grid_two[x][y])
+						free(game->grid_two[x][y]);
+					else
+						x++;
 				}
 				y++;
 			}
@@ -65,14 +69,4 @@ int	fill_grid(int fd, t_game *game)
 	}
 	game->grid[i] = 0;
 	return (1);
-}
-
-int	get_line_length(t_game *game);
-{
-	int	length;
-
-	length = ft_strlen(game->grid[0]);
-	if (length > 0 && line [size -1] == '\n')
-		length--;
-	return (length);
 }

@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   compare_elements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 15:42:53 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/24 22:01:01 by thofstet         ###   ########.fr       */
+/*   Created: 2025/01/24 23:03:18 by thofstet          #+#    #+#             */
+/*   Updated: 2025/01/24 23:04:04 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int	compare_exit(t_game *game)
 {
-	t_game	game;
+	if (check_exit_fill(game) == check_exit(game))
+		return (1);
+	else
+		return (-1);
+}
 
-	if (argc != 2)
-		return (0);
-	read_map(argv[1], &game);
+int	compare_coins(t_game *game)
+{
+	int	coins;
+	int	coins_fil;
 
-	void *mlx = mlx_init();
-
-	return 0;
+	coins = count_coins(game);
+	coins_fill = count_coins_fill(game);
+	if (coins_fill != coins)
+		return (-1);
+	else
+		return(1);
 }

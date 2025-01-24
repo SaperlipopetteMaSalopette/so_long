@@ -5,42 +5,36 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/21 22:49:11 by thofstet          #+#    #+#              #
-#    Updated: 2025/01/24 20:51:30 by thofstet         ###   ########.fr        #
+#    Created: 2025/01/24 20:47:26 by thofstet          #+#    #+#              #
+#    Updated: 2025/01/24 20:48:11 by thofstet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Imlx
-MLXFLAGS = -framework OpenGL -framework AppKit
 SRCS = $(wildcard src/* .c)
-OBJS = $(SRCS:.c=.o)
-LIBFT = libft/libft.a
-MLX = mlx/libmlx.a
+GNL_SRC = $(addprefix gnl/, gnl.c gnl_utils.c)
+PRINTF_SRC = $(addprefix ft_printf/, ft_print_c.c ft_print_d.c ft_print_p.c ft_print_s.c ft_print_u.c ft_print_x.c ft_printf.c)
+
+OBJ := $(SRC:%.c=%.o)
+GNL_OBJ := $(GNL_SRC:%.c=%.o)
+PRINTF_OBJ := $(PRINTF_SRC:%.c=%.o)
+
+CC = gcc
+CCFLAGS = -Wextra -Wall -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(GNL_OBJ) $(PRINTF_OBJ)
     $(CC) $(CCFLAGS) $^ -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	$(CC) $(CFLAGS) -c $< -o $@
 
-
-$(LIBFT):
-	make -C libft
-
-$(MLX):
-	make -C mlx
+%.o: %.c
+	gcc $(CCFLAGS) -Imlx -Iincludes -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	make -C libft clean
-	make -C mlx clean
+	rm -f $(OBJ) $(GNL_OBJ) $(PRINTF_OBJ)
 
 fclean: clean
+	make clean -C mlx/
 	rm -f $(NAME)
-	make -C libft fclean
 
-re: fclean all
-
-.PHONY: all clean fclean re
+re : fclean all
