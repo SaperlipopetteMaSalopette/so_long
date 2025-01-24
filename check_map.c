@@ -6,7 +6,7 @@
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:46:40 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/21 22:47:26 by thofstet         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:09:14 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,4 +156,107 @@ int	check_borders(t_game *game)
 		y++;
 	}
 	return (1);
+}
+
+int	check_exit(t_game *game)
+{
+	int	exit_found;
+	int	x;
+	int	y;
+
+	exit_found = 0;
+	y = 0;
+	while (game->grid[y])
+	{
+		x = 0;
+		while (game->grid[y][x])
+		{
+			if (game->grid[x][y] == 'E')
+				exit_found++;
+			else
+				x++;
+		}
+		y++;
+	}
+	if (exit_found == 1)
+		return (1);
+	else if (exit_found > 1)
+	{
+		ft_printf("There's more than one exit");
+		return (-1);
+	}
+	else
+	{
+		ft_printf("Y a un problème bg");
+		return (-1);
+	}
+	return (0);
+}
+
+int	check_spawn(t_game *game)
+{
+	int	spawn_found;
+	int	x;
+	int	y;
+
+	spawn_found = 0;
+	y = 0;
+	while (game->grid[y])
+	{
+		x = 0;
+		while (game->grid[y][x])
+		{
+			if (game->grid[x][y] == 'P')
+				spawn_found++;
+			else
+				x++;
+		}
+		y++;
+	}
+	if (spawn_found == 1)
+		return (1);
+	else if (spawn_found > 1)
+	{
+		ft_printf("There's more than one spawn");
+		return (-1);
+	}
+	else
+	{
+		ft_printf("Y a un problème bg");
+		return (-1);
+	}
+	return (0);
+}
+
+int	coin_count(t_game *game)
+{
+	int	coins;
+	int	x;
+	int	y;
+
+	coins = 0;
+	y = 0;
+	while (game->grid[y])
+	{
+		x = 0;
+		while (game->grid[y][x])
+		{
+			if (game->grid[x][y] == 'C')
+				coins++;
+			else
+				x++;
+		}
+		y++;
+	}
+	if (coins < 1)
+	{
+		ft_printf("There's not a single coin bruuh");
+		return (-1);
+	}
+	else if (coins > 1)
+	{
+		ft_printf("There is/are %d coins", &coins);
+		return (1);
+	}
+	return (0);
 }
