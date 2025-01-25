@@ -6,7 +6,7 @@
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:46:40 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/25 00:15:05 by thofstet         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:56:18 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ int	fill_grid(int fd, t_game *game)
 	return (1);
 }
 
-int	get_line_length(t_game *game)
+int	get_line_length(const char *str, t_game *game)
 {
 	int	length;
 
-	length = ft_strlen(game->grid[0]);
+	length = ft_strlen(str);
 	if (length > 0 && line [size -1] == '\n')
 		length--;
 	return (length);

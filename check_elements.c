@@ -6,18 +6,17 @@
 /*   By: thofstet <thofstet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 23:04:48 by thofstet          #+#    #+#             */
-/*   Updated: 2025/01/25 00:13:00 by thofstet         ###   ########.fr       */
+/*   Updated: 2025/01/25 01:54:11 by thofstet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	get_line_length2(char *str,  t_game *game)
+int	get_line_length2(const char *str,  t_game *game)
 {
 	int	length;
 
-	length = 0;
-	length = ft_strlen(str[length]);
+	length = ft_strlen(str);
 	if (length > 0 && line [size -1] == '\n')
 		length--;
 	return (length);
